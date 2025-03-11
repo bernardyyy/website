@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Website CMS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1, h2, h3 {
+            margin-top: 0;
+        }
+        .container {
+            display: flex;
+            gap: 30px;
+        }
+        .sidebar {
+            flex: 1;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        .content {
+            flex: 3;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        textarea {
+            height: 100px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .project-card {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .project-card h3 {
+            margin-top: 0;
+        }
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .preview {
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        .preview-homepage, .preview-subpage {
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .image-preview {
+            max-width: 100%;
+            height: 200px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        .image-preview img, .image-preview video {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .project-media {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .media-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        .media-preview {
+            width: 100px;
+            height: 100px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .media-preview img, .media-preview video {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .project-media-list {
+            margin-top: 20px;
+        }
+        .project-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .media-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .add-media-btn {
+            background-color: #2196F3;
+        }
+        .remove-media-btn {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <h1>Personal Website CMS</h1>
+    
+    <div class="container">
+        <div class="sidebar">
+            <h2>Project Form</h2>
+            <form id="projectForm">
+                <div class="form-group">
+                    <label for="title">Title (Homepage)</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="homeMedia">Home Media</label>
+                    <select id="homeMediaType" name="homeMediaType">
+                        <option value="image">Image</option>
+                        <option value="video">Video</option>
+                        <option value="gif">GIF</option>
+                    </select>
+                    <input type="file" id="homeMedia" name="homeMedia" accept="image/*,video/*">
+                </div>
+                
+                <div class="form-group">
+                    <label for="subpageTitle">Title (Sub-page)</label>
+                    <input type="text" id="subpageTitle" name="subpageTitle" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Project Media (Sub-page)</label>
+                    <div id="projectMediaList" class="project-media-list"></div>
+                    <div class="media-controls">
+                        <button type="button" id="addMediaBtn" class="add-media-btn">Add Media</button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Project Description</label>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="visual">Visual identity</option>
+                        <option value="spatial">Spatial</option>
+                        <option value="speculative">Speculative</option>
+                        <option value="digital">Digital</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <input type="text" id="year" name="year" required>
+                </div>
+                
+                <button type="submit">Save Project</button>
+            </form>
+        </div>
+        
+        <div class="content">
+            <h2>Projects</h2>
+            <div id="projectList" class="project-list"></div>
+            
+            <div class="preview">
+                <h2>Preview</h2>
+                
+                <h3>Homepage Preview</h3>
+                <div class="preview-homepage">
+                    <div class="image-preview" id="homeMediaPreview">Home Media Preview</div>
+                    <h2 id="titlePreview">Project Title</h2>
+                    <div class="project-meta">
+                        <span id="categoryPreview">Category</span>
+                        <span id="yearPreview">Year</span>
+                    </div>
+                </div>
+                
+                <h3>Sub-page Preview</h3>
+                <div class="preview-subpage">
+                    <h2 id="subpageTitlePreview">Sub-page Title</h2>
+                    <div class="project-meta">
+                        <span id="subpageCategoryPreview">Category</span>
+                        <span id="subpageYearPreview">Year</span>
+                    </div>
+                    <div class="project-media" id="projectMediaPreview">
+                        <div class="media-preview">Media</div>
+                    </div>
+                    <p id="descriptionPreview">Project description will appear here.</p>
+                </div>
+            </div>
+            
+            <button onclick="exportProjects()" style="margin-top: 20px; background-color: #2196F3;">Export Projects Data</button>
+        </div>
+    </div>
+
+    <script>
+        // Store projects in localStorage
+        let projects = JSON.parse(localStorage.getItem('projects')) || [];
+        
+        // DOM Elements
+        const projectForm = document.getElementById('projectForm');
+        const projectList = document.getElementById('projectList');
+        const projectMediaList = document.getElementById('projectMediaList');
+        const addMediaBtn = document.getElementById('addMediaBtn');
+        
+        // Preview Elements
+        const titlePreview = document.getElementById('titlePreview');
+        const homeMediaPreview = document.getElementById('homeMediaPreview');
+        const subpageTitlePreview = document.getElementById('subpageTitlePreview');
+        const categoryPreview = document.getElementById('categoryPreview');
+        const yearPreview = document.getElementById('yearPreview');
+        const subpageCategoryPreview = document.getElementById('subpageCategoryPreview');
+        const subpageYearPreview = document.getElementById('subpageYearPreview');
+        const descriptionPreview = document.getElementById('descriptionPreview');
+        const projectMediaPreview = document.getElementById('projectMediaPreview');
+        
+        // Project media items array for the current form
+        let mediaItems = [];
+        
+        // Add media button event
+        addMediaBtn.addEventListener('click', function() {
+            addMediaItem();
+        });
+        
+        // Function to add a new media item to the form
+        function addMediaItem(data = null) {
+            const mediaItem = document.createElement('div');
+            mediaItem.className = 'media-item';
+            
+            const mediaId = Date.now(); // Unique ID for this media item
+            
+            mediaItem.innerHTML = `
+                <div>
+                    <select class="media-type" data-id="${mediaId}">
+                        <option value="image" ${data && data.type === 'image' ? 'selected' : ''}>Image</option>
+                        <option value="video" ${data && data.type === 'video' ? 'selected' : ''}>Video</option>
+                        <option value="gif" ${data && data.type === 'gif' ? 'selected' : ''}>GIF</option>
+                    </select>
+                    <input type="file" class="media-file" data-id="${mediaId}" accept="image/*,video/*">
+                </div>
+                <div class="media-preview" data-id="${mediaId}">
+                    ${data && data.data ? (
+                        data.type === 'video' ? 
+                        `<video src="${data.data}" controls muted></video>` : 
+                        `<img src="${data.data}" alt="Media">`
+                    ) : 'Preview'}
+                </div>
+                <button type="button" class="remove-media-btn" data-id="${mediaId}">Remove</button>
+            `;
+            
+            // Add to project media list
+            projectMediaList.appendChild(mediaItem);
+            
+            // Add to media items array
+            mediaItems.push({
+                id: mediaId,
+                type: data ? data.type : 'image',
+                data: data ? data.data : null
+            });
+            
+            // Add event listener for file input
+            const fileInput = mediaItem.querySelector(`.media-file[data-id="${mediaId}"]`);
+            fileInput.addEventListener('change', function(e) {
+                if (e.target.files.length > 0) {
+                    const file = e.target.files[0];
+                    const reader = new FileReader();
+                    const mediaTypeSelect = mediaItem.querySelector(`.media-type[data-id="${mediaId}"]`);
+                    const mediaType = mediaTypeSelect.value;
+                    
+                    reader.onload = function(e) {
+                        const preview = mediaItem.querySelector(`.media-preview[data-id="${mediaId}"]`);
+                        
+                        if (mediaType === 'video') {
+                            preview.innerHTML = `<video src="${e.target.result}" controls muted></video>`;
+                        } else {
+                            preview.innerHTML = `<img src="${e.target.result}" alt="Media">`;
+                        }
+                        
+                        // Update media item in array
+                        const index = mediaItems.findIndex(item => item.id === mediaId);
+                        if (index !== -1) {
+                            mediaItems[index].data = e.target.result;
+                        }
+                        
+                        // Update preview
+                        updateMediaPreview();
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Add event listener for media type select
+            const mediaTypeSelect = mediaItem.querySelector(`.media-type[data-id="${mediaId}"]`);
+            mediaTypeSelect.addEventListener('change', function() {
+                // Update media item in array
+                const index = mediaItems.findIndex(item => item.id === mediaId);
+                if (index !== -1) {
+                    mediaItems[index].type = this.value;
+                }
+                
+                // Clear file input to force re-upload with new type
+                fileInput.value = '';
+                const preview = mediaItem.querySelector(`.media-preview[data-id="${mediaId}"]`);
+                preview.innerHTML = 'Preview';
+                
+                if (index !== -1) {
+                    mediaItems[index].data = null;
+                }
+            });
+            
+            // Add event listener for remove button
+            const removeBtn = mediaItem.querySelector(`.remove-media-btn[data-id="${mediaId}"]`);
+            removeBtn.addEventListener('click', function() {
+                // Remove from DOM
+                mediaItem.remove();
+                
+                // Remove from array
+                const index = mediaItems.findIndex(item => item.id === mediaId);
+                if (index !== -1) {
+                    mediaItems.splice(index, 1);
+                }
+                
+                // Update preview
+                updateMediaPreview();
+            });
+        }
+        
+        // Function to update media preview
+        function updateMediaPreview() {
+            projectMediaPreview.innerHTML = '';
+            
+            if (mediaItems.length > 0) {
+                mediaItems.forEach(item => {
+                    if (item.data) {
+                        const mediaPreview = document.createElement('div');
+                        mediaPreview.className = 'media-preview';
+                        
+                        if (item.type === 'video') {
+                            mediaPreview.innerHTML = `<video src="${item.data}" controls muted></video>`;
+                        } else {
+                            mediaPreview.innerHTML = `<img src="${item.data}" alt="Media">`;
+                        }
+                        
+                        projectMediaPreview.appendChild(mediaPreview);
+                    }
+                });
+            } else {
+                projectMediaPreview.innerHTML = '<div class="media-preview">Media</div>';
+            }
+        }
+        
+        // Update preview as user types
+        document.getElementById('title').addEventListener('input', function() {
+            titlePreview.textContent = this.value || 'Project Title';
+        });
+        
+        document.getElementById('subpageTitle').addEventListener('input', function() {
+            subpageTitlePreview.textContent = this.value || 'Sub-page Title';
+        });
+        
+        document.getElementById('category').addEventListener('change', function() {
+            const categoryText = this.options[this.selectedIndex].text;
+            categoryPreview.textContent = categoryText;
+            subpageCategoryPreview.textContent = categoryText;
+        });
+        
+        document.getElementById('year').addEventListener('input', function() {
+            yearPreview.textContent = this.value || 'Year';
+            subpageYearPreview.textContent = this.value || 'Year';
+        });
+        
+        document.getElementById('description').addEventListener('input', function() {
+            descriptionPreview.textContent = this.value || 'Project description will appear here.';
+        });
+        
+        // Handle home media upload
+        document.getElementById('homeMedia').addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                const mediaType = document.getElementById('homeMediaType').value;
+                
+                reader.onload = function(e) {
+                    if (mediaType === 'video') {
+                        homeMediaPreview.innerHTML = `<video src="${e.target.result}" controls muted></video>`;
+                    } else {
+                        homeMediaPreview.innerHTML = `<img src="${e.target.result}" alt="Home Media">`;
+                    }
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Handle home media type change
+        document.getElementById('homeMediaType').addEventListener('change', function() {
+            // Clear file input to force re-upload with new type
+            document.getElementById('homeMedia').value = '';
+            homeMediaPreview.innerHTML = 'Home Media Preview';
+        });
+        
+        // Form submission
+        projectForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get all field values
+            const title = document.getElementById('title').value;
+            const subpageTitle = document.getElementById('subpageTitle').value;
+            const description = document.getElementById('description').value;
+            const categorySelect = document.getElementById('category');
+            const category = {
+                value: categorySelect.value,
+                text: categorySelect.options[categorySelect.selectedIndex].text
+            };
+            const year = document.getElementById('year').value;
+            const homeMediaType = document.getElementById('homeMediaType').value;
+            
+            // Create project object
+            const project = {
+                id: Date.now(),
+                title,
+                subpageTitle,
+                description,
+                category,
+                year,
+                homeMediaType,
+                homeMedia: null,
+                projectMedia: []
+            };
+            
+            // Process project media
+            let mediaProcessed = 0;
+            const totalMedia = mediaItems.length + 1; // +1 for home media
+            
+            // Get home media if available
+            const homeMediaFile = document.getElementById('homeMedia').files[0];
+            if (homeMediaFile) {
+                const reader = new FileReader();
+                reader.readAsDataURL(homeMediaFile);
+                reader.onload = function() {
+                    project.homeMedia = reader.result;
+                    mediaProcessed++;
+                    checkAllMediaProcessed();
+                };
+            } else {
+                mediaProcessed++;
+                checkAllMediaProcessed();
+            }
+            
+            // Process all media items
+            if (mediaItems.length > 0) {
+                project.projectMedia = mediaItems.filter(item => item.data).map(item => ({
+                    type: item.type,
+                    data: item.data
+                }));
+                mediaProcessed += mediaItems.length;
+                checkAllMediaProcessed();
+            }
+            
+            function checkAllMediaProcessed() {
+                if (mediaProcessed >= totalMedia) {
+                    // Add to projects array
+                    projects.push(project);
+                    
+                    // Save to localStorage
+                    localStorage.setItem('projects', JSON.stringify(projects));
+                    
+                    // Reset form and media items
+                    projectForm.reset();
+                    mediaItems = [];
+                    projectMediaList.innerHTML = '';
+                    
+                    // Update project list
+                    renderProjects();
+                    
+                    // Reset previews
+                    resetPreviews();
+                }
+            }
+        });
+        
+        // Render all projects
+        function renderProjects() {
+            projectList.innerHTML = '';
+            
+            projects.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+                
+                projectCard.innerHTML = `
+                    <h3>${project.title}</h3>
+                    <div class="project-meta">
+                        <span>${project.category.text}</span>
+                        <span>${project.year}</span>
+                    </div>
+                    <button class="view-btn" data-id="${project.id}">View</button>
+                    <button class="edit-btn" data-id="${project.id}">Edit</button>
+                    <button class="delete-btn" data-id="${project.id}">Delete</button>
+                `;
+                
+                projectList.appendChild(projectCard);
+            });
+            
+            // Add event listeners to buttons
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = Number(this.getAttribute('data-id'));
+                    viewProject(id);
+                });
+            });
+            
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = Number(this.getAttribute('data-id'));
+                    editProject(id);
+                });
+            });
+            
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = Number(this.getAttribute('data-id'));
+                    deleteProject(id);
+                });
+            });
+        }
+        
+        // View project details
+        function viewProject(id) {
+            const project = projects.find(p => p.id === id);
+            if (!project) return;
+            
+            // Update preview elements
+            titlePreview.textContent = project.title;
+            
+            if (project.homeMedia) {
+                if (project.homeMediaType === 'video') {
+                    homeMediaPreview.innerHTML = `<video src="${project.homeMedia}" controls muted></video>`;
+                } else {
+                    homeMediaPreview.innerHTML = `<img src="${project.homeMedia}" alt="Home Media">`;
+                }
+            }
+            
+            subpageTitlePreview.textContent = project.subpageTitle;
+            categoryPreview.textContent = project.category.text;
+            yearPreview.textContent = project.year;
+            subpageCategoryPreview.textContent = project.category.text;
+            subpageYearPreview.textContent = project.year;
+            descriptionPreview.textContent = project.description;
+            
+            // Update project media preview
+            projectMediaPreview.innerHTML = '';
+            if (project.projectMedia && project.projectMedia.length > 0) {
+                project.projectMedia.forEach(media => {
+                    const mediaPreview = document.createElement('div');
+                    mediaPreview.className = 'media-preview';
+                    
+                    if (media.type === 'video') {
+                        mediaPreview.innerHTML = `<video src="${media.data}" controls muted></video>`;
+                    } else {
+                        mediaPreview.innerHTML = `<img src="${media.data}" alt="Media">`;
+                    }
+                    
+                    projectMediaPreview.appendChild(mediaPreview);
+                });
+            } else {
+                projectMediaPreview.innerHTML = '<div class="media-preview">Media</div>';
+            }
+            
+            // Scroll to preview section
+            document.querySelector('.preview').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Edit project
+        function editProject(id) {
+            const project = projects.find(p => p.id === id);
+            if (!project) return;
+            
+            // Clear media items
+            mediaItems = [];
+            projectMediaList.innerHTML = '';
+            
+            // Fill form with project data
+            document.getElementById('title').value = project.title;
+            document.getElementById('subpageTitle').value = project.subpageTitle;
+            document.getElementById('description').value = project.description;
+            document.getElementById('category').value = project.category.value;
+            document.getElementById('year').value = project.year;
+            
+            // Set home media type
+            if (project.homeMediaType) {
+                document.getElementById('homeMediaType').value = project.homeMediaType;
+            }
+            
+            // Update home media preview
+            if (project.homeMedia) {
+                if (project.homeMediaType === 'video') {
+                    homeMediaPreview.innerHTML = `<video src="${project.homeMedia}" controls muted></video>`;
+                } else {
+                    homeMediaPreview.innerHTML = `<img src="${project.homeMedia}" alt="Home Media">`;
+                }
+            }
+            
+            // Add project media items
+            if (project.projectMedia && project.projectMedia.length > 0) {
+                project.projectMedia.forEach(media => {
+                    addMediaItem(media);
+                });
+                updateMediaPreview();
+            }
+            
+            // Delete the project (will be re-added on form submit)
+            deleteProject(id);
+            
+            // Scroll to form
+            document.querySelector('.sidebar').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Delete project
+        function deleteProject(id) {
+            const confirmDelete = confirm('Are you sure you want to delete this project?');
+            if (confirmDelete) {
+                projects = projects.filter(p => p.id !== id);
+                localStorage.setItem('projects', JSON.stringify(projects));
+                renderProjects();
+            }
+        }
+        
+        // Reset preview elements
+        function resetPreviews() {
+            titlePreview.textContent = 'Project Title';
+            homeMediaPreview.innerHTML = 'Home Media Preview';
+            subpageTitlePreview.textContent = 'Sub-page Title';
+            categoryPreview.textContent = 'Category';
+            yearPreview.textContent = 'Year';
+            subpageCategoryPreview.textContent = 'Category';
+            subpageYearPreview.textContent = 'Year';
+            descriptionPreview.textContent = 'Project description will appear here.';
+            projectMediaPreview.innerHTML = '<div class="media-preview">Media</div>';
+        }
+        
+        // Export projects function
+        window.exportProjects = function() {
+            const dataStr = JSON.stringify(projects, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = 'projects.json';
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        };
+        
+        // Initialize
+        renderProjects();
+    </script>
+</body>
+</html>

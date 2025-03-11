@@ -1,0 +1,159 @@
+:root {
+    --darkgrey: #141414;
+    --black: #000000;
+    --lightgrey: #E2E7E9;
+    --white: #ffffff;
+  }
+
+  body {
+    max-width: 2000px;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-left: 20px;  }
+  h1 {
+    font-family: "Neue Montreal";
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 105%; /* 84px */
+    letter-spacing: -0.8px;
+    color: var(--light-grey);
+
+  }
+  
+  h2 {
+    font-family: "Neue Montreal";
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 105%; /* 63px */
+    letter-spacing: -0.6px;
+    color: var(--light-grey);
+
+  }
+
+  h3{
+  font-family: "Neue Montreal";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 105%; /* 37.8px */
+  letter-spacing: -0.36px;
+  color: var(--light-grey);
+  margin: 0;
+
+}
+  p {
+/* Paragraph/Paragraph 5 */
+font-family: "Times New Roman";
+font-size: 40px;
+font-style: normal;
+font-weight: 400;
+line-height: 105%; /* 42px */
+letter-spacing: -0.8px;
+color: var(--light-grey);
+
+  }
+
+  .header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  a {
+    font-family: "Neue Montreal";
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: 105%; /* 21px */
+letter-spacing: -0.4px;
+text-decoration: none;
+text-transform: uppercase;
+padding: 10px;
+color: var(--light-grey);
+}
+a:hover {
+  text-decoration: underline;
+
+}
+
+  .project_item-txt_main {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .project_item-txt {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    grid-column-gap: 8px;
+    grid-row-gap: 0;
+  }
+
+  .txt_category{
+    font-family: "Neue Montreal";
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: 105%; /* 21px */
+letter-spacing: -0.4px;
+color: var(--light-grey);
+margin: 0;
+  }
+  .txt_category_2{
+    font-family: "Times New Roman";
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: 105%; /* 21px */
+letter-spacing: -0.4px;
+color: var(--light-grey);
+margin: 0;
+  }
+
+
+.hero{
+  display: flex;
+  flex-direction: column;
+}
+
+  .hero_txt{
+    font-family: Times;
+font-size: 80px;
+font-style: normal;
+font-weight: 400;
+line-height: 90%; /* 72px */
+letter-spacing: -1.6px;
+  }
+
+  .footer_wrapper{
+    justify-content: center;
+    align-items: stretch;}
+
+.footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footer_right{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.project_hero{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.works_wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
