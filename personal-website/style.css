@@ -9,7 +9,8 @@
     max-width: 2000px;
     padding-top: 20px;
     padding-right: 20px;
-    padding-left: 20px;  }
+    padding-left: 20px; 
+  background-color: #000000;}
   h1 {
     font-family: "Neue Montreal";
     font-size: 80px;
@@ -72,8 +73,9 @@ letter-spacing: -0.4px;
 text-decoration: none;
 text-transform: uppercase;
 padding: 10px;
-color: var(--light-grey);
+color: var(--lightgrey);
 }
+
 a:hover {
   text-decoration: underline;
 
@@ -126,11 +128,16 @@ font-style: normal;
 font-weight: 400;
 line-height: 90%; /* 72px */
 letter-spacing: -1.6px;
+color: var(--lightgrey);
   }
 
   .footer_wrapper{
     justify-content: center;
-    align-items: stretch;}
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
 .footer{
   display: flex;
@@ -157,3 +164,20 @@ letter-spacing: -1.6px;
   justify-content: space-between;
 }
 
+/* Add this to your style.css */
+#project-description ul, #project-description ol {
+  padding-left: 20px;
+}
+
+#project-description a {
+  display: inline;
+  padding: 0;
+  text-decoration: underline;
+  font-family: inherit;
+  font-size: inherit;
+  text-transform: none;
+}
+
+#project-description p {
+  margin-bottom: 1em;
+}

@@ -22,15 +22,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         projectDiv.innerHTML = `
-          ${mediaHtml}
-          <div class="project_item-txt_main">
-            <div class="project_item-txt">
-              <h3>${project.title}</h3>
-              <p class="txt_category">${project.category.text}</p>
-            </div>
-            <p>${project.year}</p>
-          </div>
-        `;
+    ${mediaHtml}
+    <div class="project_item-txt_main">
+        <div class="project_item-txt">
+            <h3>${project.title}</h3>
+            <p class="txt_category">${project.categories ? project.categories.map(cat => cat.text).join(', ') : ''}</p>
+        </div>
+        <p>${project.year}</p>
+    </div>
+`;
+
         
         // Make the entire project div clickable
         projectDiv.style.cursor = 'pointer';
@@ -75,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('project-title').textContent = project.subpageTitle;
       document.getElementById('project-category').textContent = project.category.text;
       document.getElementById('project-year').textContent = project.year;
-      document.getElementById('project-description').textContent = project.description;
+      document.getElementById('project-description').innerHTML = project.description;
       
       // Load project media
       const imagesContainer = document.getElementById('project-images');

@@ -24,10 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Update project details
         document.getElementById('project-title').textContent = project.subpageTitle;
-        document.getElementById('project-category').textContent = project.category.text;
-        document.getElementById('project-year').textContent = project.year;
-        document.getElementById('project-description').textContent = project.description;
-        
+        document.getElementById('project-category').textContent = project.categories 
+        ? project.categories.map(cat => cat.text).join(', ') 
+        : '';        document.getElementById('project-year').textContent = project.year;
+        document.getElementById('project-description').innerHTML = project.description;
+
         // Load project images
         const imagesContainer = document.getElementById('project-images');
         imagesContainer.innerHTML = '';

@@ -185,20 +185,21 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="description">Project Description</label>
+                    <label for="description">Project Description (HTML supported for links)</label>
                     <textarea id="description" name="description" required></textarea>
                 </div>
                 
-                <div class="form-group">
-                    <label for="category">Category</label>
-                    <select id="category" name="category" required>
-                        <option value="">Select a category</option>
-                        <option value="visual">Visual identity</option>
-                        <option value="spatial">Spatial</option>
-                        <option value="speculative">Speculative</option>
-                        <option value="digital">Digital</option>
-                    </select>
-                </div>
+                <!-- Replace the existing category select with this -->
+<div class="form-group">
+    <label for="category">Categories</label>
+    <select id="category" name="category" multiple required>
+        <option value="visual">Visual identity</option>
+        <option value="spatial">Spatial</option>
+        <option value="speculative">Speculative</option>
+        <option value="digital">Digital</option>
+    </select>
+    <small>Hold Ctrl/Cmd key to select multiple categories</small>
+</div>
                 
                 <div class="form-group">
                     <label for="year">Year</label>
@@ -411,19 +412,20 @@
         });
         
         document.getElementById('category').addEventListener('change', function() {
-            const categoryText = this.options[this.selectedIndex].text;
-            categoryPreview.textContent = categoryText;
-            subpageCategoryPreview.textContent = categoryText;
-        });
-        
+    const selectedOptions = Array.from(this.selectedOptions);
+    const categoryText = selectedOptions.map(option => option.text).join(', ');
+    categoryPreview.textContent = categoryText;
+    subpageCategoryPreview.textContent = categoryText;
+});
         document.getElementById('year').addEventListener('input', function() {
             yearPreview.textContent = this.value || 'Year';
             subpageYearPreview.textContent = this.value || 'Year';
         });
         
         document.getElementById('description').addEventListener('input', function() {
-            descriptionPreview.textContent = this.value || 'Project description will appear here.';
-        });
+            descriptionPreview.innerHTML = this.value || 'Project description will appear here.';
+
+});
         
         // Handle home media upload
         document.getElementById('homeMedia').addEventListener('change', function(e) {
@@ -460,25 +462,25 @@
             const subpageTitle = document.getElementById('subpageTitle').value;
             const description = document.getElementById('description').value;
             const categorySelect = document.getElementById('category');
-            const category = {
-                value: categorySelect.value,
-                text: categorySelect.options[categorySelect.selectedIndex].text
-            };
+const selectedCategories = Array.from(categorySelect.selectedOptions).map(option => ({
+    value: option.value,
+    text: option.text
+}));
             const year = document.getElementById('year').value;
             const homeMediaType = document.getElementById('homeMediaType').value;
             
             // Create project object
             const project = {
-                id: Date.now(),
-                title,
-                subpageTitle,
-                description,
-                category,
-                year,
-                homeMediaType,
-                homeMedia: null,
-                projectMedia: []
-            };
+    id: Date.now(),
+    title,
+    subpageTitle,
+    description,
+    categories: selectedCategories, // Changed from single category to categories array
+    year,
+    homeMediaType,
+    homeMedia: null,
+    projectMedia: []
+};
             
             // Process project media
             let mediaProcessed = 0;
@@ -540,15 +542,15 @@
                 projectCard.className = 'project-card';
                 
                 projectCard.innerHTML = `
-                    <h3>${project.title}</h3>
-                    <div class="project-meta">
-                        <span>${project.category.text}</span>
-                        <span>${project.year}</span>
-                    </div>
-                    <button class="view-btn" data-id="${project.id}">View</button>
-                    <button class="edit-btn" data-id="${project.id}">Edit</button>
-                    <button class="delete-btn" data-id="${project.id}">Delete</button>
-                `;
+    <h3>${project.title}</h3>
+    <div class="project-meta">
+        <span>${project.categories ? project.categories.map(cat => cat.text).join(', ') : ''}</span>
+        <span>${project.year}</span>
+    </div>
+    <button class="view-btn" data-id="${project.id}">View</button>
+    <button class="edit-btn" data-id="${project.id}">Edit</button>
+    <button class="delete-btn" data-id="${project.id}">Delete</button>
+`;
                 
                 projectList.appendChild(projectCard);
             });
@@ -597,7 +599,8 @@
             yearPreview.textContent = project.year;
             subpageCategoryPreview.textContent = project.category.text;
             subpageYearPreview.textContent = project.year;
-            descriptionPreview.textContent = project.description;
+            descriptionPreview.innerHTML = project.description;
+
             
             // Update project media preview
             projectMediaPreview.innerHTML = '';
@@ -622,10 +625,19 @@
             document.querySelector('.preview').scrollIntoView({ behavior: 'smooth' });
         }
         
-        // Edit project
-        function editProject(id) {
-            const project = projects.find(p => p.id === id);
-            if (!project) return;
+        // Inside the editProject function
+// Replace the category setting code with this
+if (project.categories && project.categories.length > 0) {
+    const categorySelect = document.getElementById('category');
+    // Clear all selections first
+    Array.from(categorySelect.options).forEach(option => option.selected = false);
+    
+    // Set the selected options based on the project categories
+    project.categories.forEach(cat => {
+        const option = Array.from(categorySelect.options).find(opt => opt.value === cat.value);
+        if (option) option.selected = true;
+    });
+}
             
             // Clear media items
             mediaItems = [];
@@ -665,7 +677,7 @@
             
             // Scroll to form
             document.querySelector('.sidebar').scrollIntoView({ behavior: 'smooth' });
-        }
+        
         
         // Delete project
         function deleteProject(id) {
