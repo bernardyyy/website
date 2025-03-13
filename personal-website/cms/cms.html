@@ -197,6 +197,8 @@
         <option value="spatial">Spatial</option>
         <option value="speculative">Speculative</option>
         <option value="digital">Digital</option>
+        <option value="digital">Art Direction</option>
+        <option value="digital">Editorial</option>
     </select>
     <small>Hold Ctrl/Cmd key to select multiple categories</small>
 </div>
@@ -578,142 +580,134 @@ const selectedCategories = Array.from(categorySelect.selectedOptions).map(option
             });
         }
         
-        // View project details
-        function viewProject(id) {
-            const project = projects.find(p => p.id === id);
-            if (!project) return;
-            
-            // Update preview elements
-            titlePreview.textContent = project.title;
-            
-            if (project.homeMedia) {
-                if (project.homeMediaType === 'video') {
-                    homeMediaPreview.innerHTML = `<video src="${project.homeMedia}" controls muted></video>`;
-                } else {
-                    homeMediaPreview.innerHTML = `<img src="${project.homeMedia}" alt="Home Media">`;
-                }
-            }
-            
-            subpageTitlePreview.textContent = project.subpageTitle;
-            categoryPreview.textContent = project.category.text;
-            yearPreview.textContent = project.year;
-            subpageCategoryPreview.textContent = project.category.text;
-            subpageYearPreview.textContent = project.year;
-            descriptionPreview.innerHTML = project.description;
-
-            
-            // Update project media preview
-            projectMediaPreview.innerHTML = '';
-            if (project.projectMedia && project.projectMedia.length > 0) {
-                project.projectMedia.forEach(media => {
-                    const mediaPreview = document.createElement('div');
-                    mediaPreview.className = 'media-preview';
-                    
-                    if (media.type === 'video') {
-                        mediaPreview.innerHTML = `<video src="${media.data}" controls muted></video>`;
-                    } else {
-                        mediaPreview.innerHTML = `<img src="${media.data}" alt="Media">`;
-                    }
-                    
-                    projectMediaPreview.appendChild(mediaPreview);
-                });
-            } else {
-                projectMediaPreview.innerHTML = '<div class="media-preview">Media</div>';
-            }
-            
-            // Scroll to preview section
-            document.querySelector('.preview').scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        // Inside the editProject function
-// Replace the category setting code with this
-if (project.categories && project.categories.length > 0) {
-    const categorySelect = document.getElementById('category');
-    // Clear all selections first
-    Array.from(categorySelect.options).forEach(option => option.selected = false);
+        // Corrected View Project function
+function viewProject(id) {
+    const project = projects.find(p => p.id === id);
+    if (!project) return;
     
-    // Set the selected options based on the project categories
-    project.categories.forEach(cat => {
-        const option = Array.from(categorySelect.options).find(opt => opt.value === cat.value);
-        if (option) option.selected = true;
-    });
+    // Update preview elements
+    titlePreview.textContent = project.title;
+    
+    if (project.homeMedia) {
+        if (project.homeMediaType === 'video') {
+            homeMediaPreview.innerHTML = `<video src="${project.homeMedia}" controls muted></video>`;
+        } else {
+            homeMediaPreview.innerHTML = `<img src="${project.homeMedia}" alt="Home Media">`;
+        }
+    }
+    
+    subpageTitlePreview.textContent = project.subpageTitle;
+    
+    // Updated to handle categories array
+    const categoryText = project.categories ? project.categories.map(cat => cat.text).join(', ') : '';
+    categoryPreview.textContent = categoryText;
+    subpageCategoryPreview.textContent = categoryText;
+    
+    yearPreview.textContent = project.year;
+    subpageYearPreview.textContent = project.year;
+    descriptionPreview.innerHTML = project.description;
+    
+    // Update project media preview
+    projectMediaPreview.innerHTML = '';
+    if (project.projectMedia && project.projectMedia.length > 0) {
+        project.projectMedia.forEach(media => {
+            const mediaPreview = document.createElement('div');
+            mediaPreview.className = 'media-preview';
+            
+            if (media.type === 'video') {
+                mediaPreview.innerHTML = `<video src="${media.data}" controls muted></video>`;
+            } else {
+                mediaPreview.innerHTML = `<img src="${media.data}" alt="Media">`;
+            }
+            
+            projectMediaPreview.appendChild(mediaPreview);
+        });
+    } else {
+        projectMediaPreview.innerHTML = '<div class="media-preview">Media</div>';
+    }
+    
+    // Scroll to preview section
+    document.querySelector('.preview').scrollIntoView({ behavior: 'smooth' });
 }
-            
-            // Clear media items
-            mediaItems = [];
-            projectMediaList.innerHTML = '';
-            
-            // Fill form with project data
-            document.getElementById('title').value = project.title;
-            document.getElementById('subpageTitle').value = project.subpageTitle;
-            document.getElementById('description').value = project.description;
-            document.getElementById('category').value = project.category.value;
-            document.getElementById('year').value = project.year;
-            
-            // Set home media type
-            if (project.homeMediaType) {
-                document.getElementById('homeMediaType').value = project.homeMediaType;
-            }
-            
-            // Update home media preview
-            if (project.homeMedia) {
-                if (project.homeMediaType === 'video') {
-                    homeMediaPreview.innerHTML = `<video src="${project.homeMedia}" controls muted></video>`;
-                } else {
-                    homeMediaPreview.innerHTML = `<img src="${project.homeMedia}" alt="Home Media">`;
-                }
-            }
-            
-            // Add project media items
-            if (project.projectMedia && project.projectMedia.length > 0) {
-                project.projectMedia.forEach(media => {
-                    addMediaItem(media);
-                });
-                updateMediaPreview();
-            }
-            
-            // Delete the project (will be re-added on form submit)
-            deleteProject(id);
-            
-            // Scroll to form
-            document.querySelector('.sidebar').scrollIntoView({ behavior: 'smooth' });
+
+// Corrected Edit Project function - complete implementation
+function editProject(id) {
+    const project = projects.find(p => p.id === id);
+    if (!project) return;
+    
+    // Fill form with project data
+    document.getElementById('title').value = project.title;
+    document.getElementById('subpageTitle').value = project.subpageTitle;
+    document.getElementById('description').value = project.description;
+    document.getElementById('year').value = project.year;
+    
+    // Updated to handle categories array
+    if (project.categories && project.categories.length > 0) {
+        const categorySelect = document.getElementById('category');
+        // Clear all selections first
+        Array.from(categorySelect.options).forEach(option => option.selected = false);
         
-        
-        // Delete project
-        function deleteProject(id) {
-            const confirmDelete = confirm('Are you sure you want to delete this project?');
-            if (confirmDelete) {
-                projects = projects.filter(p => p.id !== id);
-                localStorage.setItem('projects', JSON.stringify(projects));
-                renderProjects();
-            }
+        // Set the selected options based on the project categories
+        project.categories.forEach(cat => {
+            const option = Array.from(categorySelect.options).find(opt => opt.value === cat.value);
+            if (option) option.selected = true;
+        });
+    }
+    
+    // Set home media type
+    if (project.homeMediaType) {
+        document.getElementById('homeMediaType').value = project.homeMediaType;
+    }
+    
+    // Update home media preview
+    if (project.homeMedia) {
+        if (project.homeMediaType === 'video') {
+            homeMediaPreview.innerHTML = `<video src="${project.homeMedia}" controls muted></video>`;
+        } else {
+            homeMediaPreview.innerHTML = `<img src="${project.homeMedia}" alt="Home Media">`;
         }
-        
-        // Reset preview elements
-        function resetPreviews() {
-            titlePreview.textContent = 'Project Title';
-            homeMediaPreview.innerHTML = 'Home Media Preview';
-            subpageTitlePreview.textContent = 'Sub-page Title';
-            categoryPreview.textContent = 'Category';
-            yearPreview.textContent = 'Year';
-            subpageCategoryPreview.textContent = 'Category';
-            subpageYearPreview.textContent = 'Year';
-            descriptionPreview.textContent = 'Project description will appear here.';
-            projectMediaPreview.innerHTML = '<div class="media-preview">Media</div>';
-        }
-        
-        // Export projects function
-        window.exportProjects = function() {
-            const dataStr = JSON.stringify(projects, null, 2);
-            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-            
-            const exportFileDefaultName = 'projects.json';
-            
-            const linkElement = document.createElement('a');
-            linkElement.setAttribute('href', dataUri);
-            linkElement.setAttribute('download', exportFileDefaultName);
-            linkElement.click();
-        };
+    }
+    
+    // Clear media items
+    mediaItems = [];
+    projectMediaList.innerHTML = '';
+    
+    // Add project media items
+    if (project.projectMedia && project.projectMedia.length > 0) {
+        project.projectMedia.forEach(media => {
+            addMediaItem(media);
+        });
+        updateMediaPreview();
+    }
+    
+    // Delete the project (will be re-added on form submit)
+    deleteProject(id, false); // Adding a parameter to prevent confirmation dialog during edit
+    
+    // Scroll to form
+    document.querySelector('.sidebar').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Updated Delete Project function to include optional confirmation parameter
+function deleteProject(id, confirmDialog = true) {
+    if (!confirmDialog || confirm('Are you sure you want to delete this project?')) {
+        projects = projects.filter(p => p.id !== id);
+        localStorage.setItem('projects', JSON.stringify(projects));
+        renderProjects();
+    }
+}
+
+// Make sure the Export Projects function is properly defined
+window.exportProjects = function() {
+    const dataStr = JSON.stringify(projects, null, 2);
+    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+    
+    const exportFileDefaultName = 'projects.json';
+    
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+};
         
         // Initialize
         renderProjects();
