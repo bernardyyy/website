@@ -1,114 +1,87 @@
-// scripts.js - For homepage
 document.addEventListener('DOMContentLoaded', function() {
-  // Load projects from the JSON file
+  // Fetch the projects data
   fetch('projects.json')
     .then(response => response.json())
     .then(projects => {
-      const container = document.getElementById('projects-container');
+      // Check if we're on the homepage
+      const projectsContainer = document.getElementById('projects-container');
       
-      projects.forEach(project => {
-        const projectDiv = document.createElement('div');
-        projectDiv.className = 'content';
+      if (projectsContainer) {
+        // We're on the homepage, display project previews
+        displayHomeProjects(projects, projectsContainer);
+      } else {
+        // Check if we're on a project page
+        const projectDetailContainer = document.getElementById('project-detail-container');
         
-        // Create media element based on type
-        let mediaHtml = '';
-        if (project.homeMedia) {
-          if (project.homeMediaType === 'video') {
-            mediaHtml = `<video src="${project.homeMedia}" autoplay loop muted></video>`;
-          } else {
-            // For both images and GIFs
-            mediaHtml = `<img src="${project.homeMedia}" alt="${project.title}">`;
+        if (projectDetailContainer) {
+          // We're on a project page, display project details
+          // Get the project ID from the URL (e.g., project1.html -> id=1)
+          const urlPath = window.location.pathname;
+          const projectFileName = urlPath.split('/').pop();
+          
+          // Find the project that matches this page
+          const project = projects.find(p => p.link === projectFileName);
+          
+          if (project) {
+            displayProjectDetail(project, projectDetailContainer);
           }
         }
-        
-        projectDiv.innerHTML = `
-    ${mediaHtml}
-    <div class="project_item-txt_main">
-        <div class="project_item-txt">
-            <h3>${project.title}</h3>
-            <p class="txt_category">${project.categories ? project.categories.map(cat => cat.text).join(', ') : ''}</p>
+      }
+    })
+    .catch(error => console.error('Error loading projects:', error));
+});
+
+// Function to display projects on homepage
+function displayHomeProjects(projects, container) {
+  // Clear any existing content
+  container.innerHTML = '';
+  
+  // Create HTML for each project preview
+  projects.forEach(project => {
+    const projectElement = document.createElement('div');
+    projectElement.className = 'project-item';
+    
+    projectElement.innerHTML = `
+      <a href="${project.link}">
+        <img src="${project.main_image}" alt="${project.title}" class="project-image">
+        <h2 class="project-title">${project.title}</h2>
+        <div class="project-meta">
+          <span class="project-category">${project.category}</span>
+          <span class="project-year">${project.year}</span>
         </div>
-        <p>${project.year}</p>
+      </a>
+    `;
+    
+    container.appendChild(projectElement);
+  });
+}
+
+// Function to display project details on a project page
+function displayProjectDetail(project, container) {
+  // Clear any existing content
+  container.innerHTML = '';
+  
+  // Create the project detail HTML
+  const detailHTML = `
+    <div class="project-detail">
+      <h1 class="project-title-large">${project.title_2}</h1>
+      
+      <div class="project-meta">
+        <span class="project-category">${project.category}</span>
+        <span class="project-year">${project.year}</span>
+      </div>
+      
+      <div class="project-gallery">
+        ${project.project_images.map(img => 
+          `<img src="${img}" alt="${project.title}" class="project-detail-image">`
+        ).join('')}
+      </div>
+      
+      <div class="project-description">
+        <p>${project.description}</p>
+      </div>
     </div>
-`;
-
-        
-        // Make the entire project div clickable
-        projectDiv.style.cursor = 'pointer';
-        projectDiv.addEventListener('click', function() {
-          window.location.href = `project.html?id=${project.id}`;
-        });
-        
-        container.appendChild(projectDiv);
-      });
-    })
-    .catch(error => {
-      console.error('Error loading projects:', error);
-    });
-});
-
-// project-script.js - For project detail page
-document.addEventListener('DOMContentLoaded', function() {
-  // Get project ID from URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const projectId = Number(urlParams.get('id'));
+  `;
   
-  if (!projectId) {
-    window.location.href = 'index.html';
-    return;
-  }
-  
-  // Load project data
-  fetch('projects.json')
-    .then(response => response.json())
-    .then(projects => {
-      const project = projects.find(p => p.id === projectId);
-      
-      if (!project) {
-        window.location.href = 'index.html';
-        return;
-      }
-      
-      // Update document title
-      document.title = `${project.subpageTitle} - Bernard Gerber`;
-      
-      // Update project details
-      document.getElementById('project-title').textContent = project.subpageTitle;
-      document.getElementById('project-category').textContent = project.category.text;
-      document.getElementById('project-year').textContent = project.year;
-      document.getElementById('project-description').innerHTML = project.description;
-      
-      // Load project media
-      const imagesContainer = document.getElementById('project-images');
-      imagesContainer.innerHTML = '';
-      
-      if (project.projectMedia && project.projectMedia.length > 0) {
-        project.projectMedia.forEach(media => {
-          const mediaWrapper = document.createElement('div');
-          mediaWrapper.className = 'content';
-          
-          // Create appropriate media element based on type
-          if (media.type === 'video') {
-            const video = document.createElement('video');
-            video.src = media.data;
-            video.controls = true;
-            video.autoplay = false;
-            video.loop = true;
-            video.muted = false;
-            mediaWrapper.appendChild(video);
-          } else {
-            // For both images and GIFs
-            const img = document.createElement('img');
-            img.src = media.data;
-            img.alt = project.subpageTitle;
-            mediaWrapper.appendChild(img);
-          }
-          
-          imagesContainer.appendChild(mediaWrapper);
-        });
-      }
-    })
-    .catch(error => {
-      console.error('Error loading project:', error);
-    });
-});
+  container.innerHTML = detailHTML;
+}
