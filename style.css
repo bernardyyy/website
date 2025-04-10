@@ -1,0 +1,545 @@
+:root {
+    --darkgrey: #141414;
+    --black: #000000;
+    --lightgrey: #E2E7E9;
+    --white: #ffffff;
+  }
+
+@font-face {
+    font-family: 'Exposure Light';
+    src: url(ExposureTrial[+30].otf);
+}
+
+@font-face {
+    font-family: 'Exposure Bold';
+    src: url(ExposureTrial[-100].otf);
+}
+
+@font-face {
+  font-family: 'Ps Times';
+  src: url(651562a4169082b87ebb7e31_PSTimes-Regular.otf);
+}
+
+  
+  body {
+    max-width: 2000px;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-left: 20px; 
+  background-color: #000000;}
+  h1 {
+    font-family: "Neue Montreal", Arial, Helvetica, sans-serif;
+    font-size: 5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 105%; /* 84px */
+    letter-spacing: -0.8px;
+    color: #E2E7E9;
+
+  }
+  
+  h2 {
+    font-family: "Neue Montreal", Arial, Helvetica, sans-serif;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 105%; /* 63px */
+    letter-spacing: -0.6px;
+    color: #E2E7E9;
+
+  }
+
+  h3{
+  font-family: "Neue Montreal", Arial, Helvetica, sans-serif;
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 105%; /* 37.8px */
+  letter-spacing: -0.36px;
+  color: #E2E7E9;
+  margin: 0;
+
+}
+  p {
+/* Paragraph/Paragraph 5 */
+font-family: "Ps Times", 'Times New Roman', Times, serif;
+font-size: 40px;
+font-style: normal;
+font-weight: 400;
+line-height: 105%; /* 42px */
+letter-spacing: -0.8px;
+color: #E2E7E9;
+
+  }
+
+  .header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  a {
+    font-family: "Neue Montreal", Arial, Helvetica, sans-serif;
+font-size: 0.919rem;
+font-style: normal;
+font-weight: 400;
+line-height: 105%; /* 21px */
+letter-spacing: -0.4px;
+text-decoration: none;
+padding: 10px;
+color: var(--lightgrey);
+
+}
+
+
+
+  .project_item-txt_main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .project_item-txt {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    grid-column-gap: 8px;
+    grid-row-gap: 0;
+  }
+
+  .txt_category{
+    font-family: "Neue Montreal";
+font-size: 0.919rem;
+font-style: normal;
+font-weight: 400;
+line-height: 105%; /* 21px */
+letter-spacing: -0.4px;
+color: #E2E7E9;
+margin: 0;
+  }
+  .txt_category_2{
+    font-family: "Ps Times", 'Times New Roman', Times, serif;
+font-size: 0.919rem;
+font-style: normal;
+font-weight: 400;
+line-height: 105%; /* 21px */
+letter-spacing: -0.4px;
+color: #E2E7E9;
+margin: 0;
+  }
+
+
+.hero{
+  display: flex;
+  flex-direction: column;
+}
+
+  .hero_txt{
+    font-family: "Ps Times", 'Times New Roman', Times, serif;
+font-size: 5rem;
+font-style: normal;
+font-weight: 400;
+line-height: 90%; /* 72px */
+letter-spacing: -1.6px;
+color: var(--lightgrey);
+  }
+
+  .footer_wrapper{
+    margin-top: 100px;
+    margin-bottom: 100px;
+    justify-content: center;
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+.footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footer_right{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.project_hero{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 60%;
+  margin-bottom: 30px;
+}
+
+.works_wrapper{
+  display: flex;
+  flex-direction: row;
+}
+
+/* Add this to your style.css */
+#project-description ul, #project-description ol {
+  padding-left: 20px;
+}
+
+#project-description a {
+  display: inline;
+  padding: 0;
+  text-decoration: underline;
+  font-family: inherit;
+  font-size: inherit;
+  text-transform: none;
+}
+
+#project-description p {
+  margin-bottom: 1em;
+  color: #E2E7E9;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+}
+
+.content img{
+  width: 100%;
+}
+
+.content:hover{
+filter: blur(90);
+}
+
+#project-images{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.content_wrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.content_txt{
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.project-meta{
+  display: flex;
+  flex-direction: row;
+justify-content: space-between;}
+
+.project-item{
+  display: flex;
+  flex-direction: column;
+}
+
+.project-year{
+  font-family: "Exposure Light";
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 105%; /* 21px */
+  letter-spacing: -0.4px;
+  color: #E2E7E9;
+  margin: 0;
+}
+
+.project-title{
+  margin: 0
+  ;
+}
+
+.content-wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.project-image{
+  width: 100%;
+}
+
+.link{
+  font-family: "Neue Montreal", Arial, Helvetica, sans-serif;
+font-size: 0.919rem;
+font-style: normal;
+font-weight: 400;
+line-height: 105%; /* 21px */
+letter-spacing: -0.4px;
+text-decoration: none;
+padding: 10px;
+color: var(--lightgrey);
+text-transform: uppercase ;
+
+}
+
+.link:hover{
+  text-decoration: underline;
+  transition: all 300ms;
+
+}
+
+.project-gallery{
+  display: flex;
+  flex-direction: column;
+}
+
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+font-family: "Ps Times", 'Times New Roman', Times, serif;
+font-size: 1.875rem;
+color: #E2E7E9;
+line-height: 105%; /* 42px */
+letter-spacing: -0.8px;
+}
+
+.about_main{
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  margin-bottom: 80px;
+}
+
+.about_description-main{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 80%;
+}
+
+.about_description-grid{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.about_txt{
+  font-family: "Neue Montreal";
+  font-size: 0.919rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 105%; /* 21px */
+  letter-spacing: -0.4px;
+ text-transform: uppercase;
+  color: var(--lightgrey);
+  margin: 0;
+}
+
+.about_title{
+  padding: 0;
+  margin: 0;
+font-family: "Ps Times", 'Times New Roman', Times, serif;
+font-size: 1.875rem;
+color: #E2E7E9;
+line-height: 105%; /* 42px */
+letter-spacing: -0.8px;
+}
+
+.about_title_2{
+  padding: 0;
+  margin: 0;
+font-family: "Ps Times", 'Times New Roman', Times, serif;
+font-size: 1.875rem;
+color: #E2E7E9;
+line-height: 105%; /* 42px */
+letter-spacing: -0.8px;
+}
+
+.about_title:hover{
+  text-decoration: underline;
+}
+
+
+.about_description-item{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+gap: 10px;
+}
+
+.about_description-grid-item{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.about_body{
+  font-family: "Neue Montreal";
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 105%; /* 42px */
+  letter-spacing: -0.8px;
+  padding: 0;
+  margin: 0;
+}
+
+.text_description{
+  font-family: "Ps Times", 'Times New Roman', Times, serif;
+  font-size: 1.5rem;
+}
+
+.div_description{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.content_txt-2{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.project_home-title{
+  font-family: "Neue Montreal";
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 105%; /* 42px */
+  letter-spacing: -0.36px;
+  padding: 0;
+  margin: 0;}
+
+  .project_home-year{
+    font-family: "Ps Times", 'Times New Roman', Times, serif;
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .project_home-category{
+    font-family: "Neue Montreal";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 105%; /* 42px */
+  letter-spacing: -0.4px;
+  padding: 0;
+  margin: 0;
+  }
+
+  .text_description a {
+text-decoration: underline;
+  }
+
+
+  @media only screen and (max-width: 430px){
+
+.hero_txt{ 
+  font-size: 3rem;
+}
+
+.project_home-title{
+  font-size: 1.5rem;
+}
+
+.project_home-category{
+  font-size: 1rem;
+
+}
+
+
+.project_home-year{
+  font-size: 1rem;
+}
+
+h1{
+  font-size: 2.5rem;
+}
+
+.about_main{
+max-width: 100%;}
+
+.about_body{
+font-size: 1.5rem;
+
+}
+
+.about_title{
+  font-size: 1.5rem;
+}
+
+.about_description-main{
+  display: flex;
+  flex-direction: column;
+}
+
+.about_description-main{
+  gap: 30px;
+}
+
+.div_description{
+  width: 100%;
+}
+
+.project_hero{
+  width: 100%;
+}
+
+  }
+
+  /* Project Navigation Styles */
+.project-navigation {
+  margin: 60px 0;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #E2E7E9;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.nav-button:hover {
+ text-decoration: underline;
+}
+
+.nav-arrow {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.prev-button .nav-arrow {
+  margin-right: 8px;
+}
+
+.next-button .nav-arrow {
+  margin-left: 8px;
+}
+
+.nav-text {
+  font-size: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-buttons {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .next-button {
+    align-self: flex-end;
+  }
+}
