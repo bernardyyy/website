@@ -53,6 +53,9 @@
 .cursor.grow {
     transform: translate(-50%, -50%) scale(2);
 }
+
+.cursor.blend {
+  mix-blend-mode: difference;}
   
   body {
     max-width: 2000px;
@@ -166,7 +169,8 @@ margin: 0;
 .hero{
   display: flex;
   flex-direction: column;
-}
+padding-top: 40px;
+padding-bottom: 40px;}
 
   .hero_txt{
     font-family: "Ps Times", 'Times New Roman', Times, serif;
