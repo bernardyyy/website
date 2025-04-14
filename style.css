@@ -485,6 +485,11 @@ text-decoration: underline;
   font-size: 2rem;
 }
 
+.cursor{
+  display: none;
+  visibility: hidden;
+}
+
 .project_home-title{
   font-size: 1.5rem;
 }
