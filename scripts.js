@@ -36,3 +36,12 @@ const projectSequence = [
   
   // Run the setup when DOM is fully loaded
   document.addEventListener('DOMContentLoaded', setupProjectNavigation);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const cursor = document.querySelector('.cursor');
+    
+    // Update cursor position on mouse move
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+    });

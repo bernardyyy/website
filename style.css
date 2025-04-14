@@ -20,6 +20,39 @@
   src: url(651562a4169082b87ebb7e31_PSTimes-Regular.otf);
 }
 
+
+@font-face {
+  font-family: 'Neue Montreal Regular';
+  src: url(NeueMontreal-Regular.otf);
+}
+
+@font-face {
+  font-family: 'Neue Montreal Bold';
+  src: url(NeueMontreal-Bold.otf);
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: none; /* Hide the default cursor */}
+
+  .cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #BBBBBB;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.3s ease, mix-blend-mode 0.3s ease;
+    transform: translate(-50%, -50%);
+}
+
+.cursor.grow {
+    transform: translate(-50%, -50%) scale(2);
+}
   
   body {
     max-width: 2000px;
@@ -28,7 +61,7 @@
     padding-left: 20px; 
   background-color: #000000;}
   h1 {
-    font-family: "Neue Montreal", Arial, Helvetica, sans-serif;
+    font-family: "Neue Montreal Bold", Arial, Helvetica, sans-serif;
     font-size: 5rem;
     font-style: normal;
     font-weight: 700;
@@ -39,7 +72,7 @@
   }
   
   h2 {
-    font-family: "Neue Montreal", Arial, Helvetica, sans-serif;
+    font-family: "Neue Montreal Bold", Arial, Helvetica, sans-serif;
     font-size: 60px;
     font-style: normal;
     font-weight: 700;
@@ -437,7 +470,7 @@ text-decoration: underline;
   @media only screen and (max-width: 430px){
 
 .hero_txt{ 
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .project_home-title{
@@ -470,6 +503,21 @@ font-size: 1.5rem;
   font-size: 1.5rem;
 }
 
+.about_title_2{
+  font-size: 1.5rem;
+}
+
+.footer_wrapper{
+  margin-top: 40px;
+  margin-bottom: 40px;
+ 
+}
+
+body{
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .about_description-main{
   display: flex;
   flex-direction: column;
@@ -484,8 +532,9 @@ font-size: 1.5rem;
 }
 
 .project_hero{
-  width: 100%;
-}
+  width: 100%;}
+
+
 
   }
 
@@ -509,6 +558,7 @@ font-size: 1.5rem;
   transition: opacity 0.3s ease;
   cursor: pointer;
   text-transform: uppercase;
+  text-wrap: wrap;
 }
 
 .nav-button:hover {
@@ -532,14 +582,16 @@ font-size: 1.5rem;
   font-size: 16px;
 }
 
+
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .nav-buttons {
-    flex-direction: column;
     gap: 20px;
   }
   
   .next-button {
     align-self: flex-end;
   }
+
 }
