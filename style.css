@@ -538,6 +538,11 @@ font-size: 1.5rem;
  
 }
 
+.footer{
+  justify-content: center;
+  align-items: ;
+}
+
 body{
   padding-left: 0;
   padding-right: 0;
