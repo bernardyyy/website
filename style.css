@@ -22,7 +22,7 @@
 
 
 @font-face {
-  font-family: 'Neue Montreal Regular';
+  font-family: 'Neue Montreal';
   src: url(NeueMontreal-Regular.otf) format('opentype'),
       url(NeueMontreal-Regular.woff) format('woff'),
       url(NeueMontreal-Regular.woff2) format('woff2');
@@ -32,7 +32,7 @@
 }
 
 @font-face {
-  font-family: 'Neue Montreal Bold';
+  font-family: 'Neue Montreal';
   src: url(NeueMontreal-Bold.otf) format('opentype'),
   url(NeueMontreal-Bold.woff) format('woff'),
   url(NeueMontreal-Bold.woff2) format('woff2');
