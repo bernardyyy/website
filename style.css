@@ -182,7 +182,9 @@ margin: 0;
   display: flex;
   flex-direction: column;
 padding-top: 40px;
-padding-bottom: 40px;}
+padding-bottom: 40px;
+padding-left: 10px;
+padding-right: 10px;}
 
   .hero_txt{
     font-family: "Ps Times", 'Times New Roman', Times, serif;
@@ -540,6 +542,8 @@ font-size: 1.5rem;
 .footer_wrapper{
   margin-top: 40px;
   margin-bottom: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
  
 }
 
