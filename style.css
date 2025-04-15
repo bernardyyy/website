@@ -77,9 +77,9 @@
   background-color: #000000;}
   h1 {
     font-family: 'Neue Montreal', Arial, Helvetica, sans-serif;
-    font-size: 5rem;
-    font-style: normal;
-    font-weight: 400;
+    font-size: 3.5rem;
+    font-style: bold;
+    font-weight: 700;
     line-height: 105%; /* 84px */
     letter-spacing: -0.8px;
     color: #E2E7E9;
@@ -220,7 +220,7 @@ color: var(--lightgrey);
   display: flex;
   flex-direction: column;
   gap: 30px;
-  width: 60%;
+  width: 50%;
   margin-bottom: 40px;
   margin-top: 40px;
 }
@@ -356,7 +356,7 @@ letter-spacing: -0.8px;
 .about_main{
   display: flex;
   flex-direction: column;
-  max-width: 60%;
+  max-width: 50%;
   margin-top: 40px;
   margin-bottom: 40px;
   gap: 40px;
@@ -432,7 +432,7 @@ gap: 10px;
 
 .about_body{
   font-family: "Neue Montreal";
-  font-size: 2.5rem;
+  font-size:1.75rem;
   font-style: normal;
   font-weight: 400;
   line-height: 105%; /* 42px */
@@ -449,7 +449,8 @@ gap: 10px;
 .div_description{
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 50%;
+  gap: 10px;
 }
 
 .content_txt-2{
