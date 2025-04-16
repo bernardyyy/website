@@ -184,7 +184,8 @@ margin: 0;
 padding-top: 40px;
 padding-bottom: 40px;
 padding-left: 10px;
-padding-right: 10px;}
+padding-right: 10px;
+}
 
   .hero_txt{
     font-family: "Ps Times", 'Times New Roman', Times, serif;
@@ -362,11 +363,14 @@ letter-spacing: -0.8px;
   margin-top: 40px;
   margin-bottom: 40px;
   gap: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
 
 }
 
 .about_hero{
   gap: 40px;
+  text-wrap: balance;
 }
 
 .about_description-main{
@@ -374,6 +378,8 @@ letter-spacing: -0.8px;
   flex-direction: row;
   justify-content: space-between;
   max-width: 80%;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .about_description-grid{
@@ -436,6 +442,7 @@ gap: 10px;
   font-family: "Neue Montreal";
   font-size:1.75rem;
   font-style: normal;
+  text-wrap: balance;
   font-weight: 400;
   line-height: 105%; /* 42px */
   letter-spacing: -0.8px;
