@@ -86,3 +86,39 @@ document.addEventListener('DOMContentLoaded', () => {
   setupProjectNavigation();
   setupCustomCursor();
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Select all video container divs
+    const videoContainers = document.querySelectorAll('div[style*="padding:56.25%"]');
+    
+    // Create an Intersection Observer
+    const videoObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        // If the element is in the viewport
+        if (entry.isIntersecting) {
+          const container = entry.target;
+          const iframe = container.querySelector('iframe');
+          
+          // Get the iframe src and set it (it was stored in a data attribute)
+          if (iframe && iframe.dataset.src) {
+            iframe.src = iframe.dataset.src;
+            // Stop observing after loading
+            observer.unobserve(container);
+          }
+        }
+      });
+    }, { rootMargin: "200px" }); // Start loading when within 200px of viewport
+    
+    // Set up each video container for lazy loading
+    videoContainers.forEach(container => {
+      const iframe = container.querySelector('iframe');
+      if (iframe) {
+        // Store the original src in a data attribute and remove it from src
+        iframe.dataset.src = iframe.src;
+        iframe.removeAttribute('src');
+        
+        // Start observing the container
+        videoObserver.observe(container);
+      }
+    });
+  });
