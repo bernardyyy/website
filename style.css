@@ -453,6 +453,7 @@ gap: 10px;
 .text_description{
   font-family: "Ps Times", 'Times New Roman', Times, serif;
   font-size: 1.5rem;
+  text-wrap: balance;
 }
 
 .div_description{
