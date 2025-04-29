@@ -3,7 +3,8 @@ const projectSequence = [
   'gerber-wishes.html',
   'qalendar.html',
   'morangos-mofados.html',
-  'moombi.html'
+  'moombi.html',
+  'aprender.html'
 ];
 
 // Function to handle navigation
