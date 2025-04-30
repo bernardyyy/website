@@ -4,7 +4,8 @@ const projectSequence = [
   'qalendar.html',
   'morangos-mofados.html',
   'moombi.html',
-  'aprender.html'
+  'aprender.html',
+  'dump.html'
 ];
 
 // Function to handle navigation
