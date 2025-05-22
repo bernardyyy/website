@@ -124,3 +124,93 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+  const nameSpan = document.querySelector('.name');
+        const brazilianSpan = document.querySelector('.brazilian');
+        const lisbonSpan = document.querySelector('.lisbon');
+        const physicalSpan = document.querySelector('.physical');
+        const digitalSpan = document.querySelector('.digital');
+        
+        const mateEmoji = document.getElementById('mateEmoji');
+        const brazilEmoji = document.getElementById('brazilEmoji');
+        const lisbonEmoji = document.getElementById('lisbonEmoji');
+        const physicalEmoji = document.getElementById('physicalEmoji');
+        const digitalEmoji = document.getElementById('digitalEmoji');
+        
+        let activeEmoji = null;
+        let isHovering = false;
+        let currentX = 0;
+        let currentY = 0;
+        let targetX = 0;
+        let targetY = 0;
+
+        function lerp(start, end, factor) {
+            return start + (end - start) * factor;
+        }
+
+        function animateEmoji() {
+            if (isHovering && activeEmoji) {
+                currentX = lerp(currentX, targetX, 0.15);
+                currentY = lerp(currentY, targetY, 0.15);
+                
+                activeEmoji.style.left = currentX + 'px';
+                activeEmoji.style.top = currentY + 'px';
+                
+                requestAnimationFrame(animateEmoji);
+            }
+        }
+
+        function updateEmojiPosition(e) {
+            if (isHovering) {
+                targetX = e.clientX + 25;
+                targetY = e.clientY - 25;
+            }
+        }
+
+        function createHoverHandler(span, emoji) {
+            span.addEventListener('mouseenter', (e) => {
+                // Hide any currently active emoji
+                if (activeEmoji) {
+                    activeEmoji.classList.remove('visible');
+                }
+                
+                isHovering = true;
+                activeEmoji = emoji;
+                emoji.classList.add('visible');
+                
+                // Initialize position
+                currentX = e.clientX + 25;
+                currentY = e.clientY - 25;
+                targetX = currentX;
+                targetY = currentY;
+                
+                emoji.style.left = currentX + 'px';
+                emoji.style.top = currentY + 'px';
+                
+                animateEmoji();
+            });
+
+            span.addEventListener('mouseleave', () => {
+                isHovering = false;
+                emoji.classList.remove('visible');
+                if (activeEmoji === emoji) {
+                    activeEmoji = null;
+                }
+            });
+
+            span.addEventListener('mousemove', updateEmojiPosition);
+        }
+
+        // Create hover handlers for each span
+        createHoverHandler(nameSpan, mateEmoji);
+        createHoverHandler(brazilianSpan, brazilEmoji);
+        createHoverHandler(lisbonSpan, lisbonEmoji);
+        createHoverHandler(physicalSpan, physicalEmoji);
+        createHoverHandler(digitalSpan, digitalEmoji);
+
+        // Also update position when mouse moves anywhere on the page while hovering
+        document.addEventListener('mousemove', (e) => {
+            if (isHovering && activeEmoji) {
+                updateEmojiPosition(e);
+            }
+        });
