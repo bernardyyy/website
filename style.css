@@ -266,6 +266,8 @@ color: var(--lightgrey);
 }
 
 
+
+
   .footer_wrapper{
     margin-top: 60px;
     margin-bottom: 60px;
@@ -610,6 +612,7 @@ text-transform: uppercase ;
 
 .hero_txt{ 
   font-size: 2rem;
+  letter-spacing: -0.16rem;
 }
 
 .cursor{
@@ -659,6 +662,11 @@ font-size: 1.5rem;
  
 }
 
+.hero_txt span{
+  font-size: 2rem;
+  letter-spacing: -0.16rem;
+}
+
 .footer{
   justify-content: center;
 }
@@ -683,8 +691,14 @@ body{
 
 .project_hero{
   width: 100%;}
-
-
+    
+    .mate-emoji {
+        display: none !important;
+    }
+    
+    .name, .brazilian, .lisbon, .physical, .digital {
+        cursor: default;
+    }
 
   }
 
