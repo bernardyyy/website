@@ -267,8 +267,8 @@ color: var(--lightgrey);
 
 
   .footer_wrapper{
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 60px;
+    margin-bottom: 60px;
     justify-content: center;
     align-items: stretch;
     display: flex;
