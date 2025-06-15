@@ -629,6 +629,19 @@ text-transform: uppercase ;
 
 }
 
+.project_hero{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.content-wrapper{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.text_description{
+  font-size: 1.2rem;
+}
 
 .project_home-year{
   font-size: 1rem;
