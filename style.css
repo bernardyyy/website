@@ -465,7 +465,7 @@ letter-spacing: -0.8px;
 .about_description-grid{
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 60px;
 }
 
 .about_txt{
@@ -479,6 +479,18 @@ letter-spacing: -0.8px;
   color: var(--lightgrey);
   margin: 0;
 }
+
+.about_txt_2{
+  font-family:"Exposure Light", 'Times New Roman', Times, serif;
+  font-size: 0.919rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 105%; /* 21px */
+  letter-spacing: -0.4px;
+  color: var(--lightgrey);
+  margin: 0;
+}
+
 
 .about_title{
   padding: 0;
@@ -501,7 +513,7 @@ letter-spacing: -0.16rem;
 }
 
 .about_title:hover{
-  text-decoration: underline;
+ font-family: "Exposure Bold", 'Times New Roman', Times, serif;
 }
 
 
@@ -519,7 +531,7 @@ gap: 10px;
 }
 
 .about_body{
-  font-family: "Neue Montreal";
+  font-family:  "Exposure Light", 'Times New Roman', Times, serif;
   font-size:1.75rem;
   font-style: normal;
   text-wrap: balance;
@@ -577,6 +589,11 @@ gap: 10px;
   margin: 0;
   }
 
+  .about_main-title{
+    font-family: "Exposure Light", 'Times New Roman', Times, serif;
+  }
+
+
   .text_description a {
 text-decoration: underline;
   }
@@ -606,6 +623,27 @@ text-decoration:underline;
 color: var(--lightgrey);
 text-transform: uppercase ;
   }
+
+
+  .accordion_title {
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    transition: 0.4s;
+  }
+  
+  
+  /* Style the accordion panel. Note: hidden by default */
+  .panel {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+  }
+
+
+
 
 
   @media only screen and (max-width: 430px){
