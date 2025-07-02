@@ -5,7 +5,8 @@ const projectSequence = [
   'morangos-mofados.html',
   'moombi.html',
   'aprender.html',
-  'dump.html'
+  'dump.html',
+  'coura.html'
 ];
 
 // Function to handle navigation
@@ -201,6 +202,28 @@ document.addEventListener('DOMContentLoaded', function() {
             span.addEventListener('mousemove', updateEmojiPosition);
         }
 
+
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+        
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            /* Toggle between adding and removing the "active" class,
+            to highlight the button that controls the panel */
+            this.classList.toggle("active");
+        
+            /* Toggle between hiding and showing the active panel */
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+              panel.style.display = "none";
+            } else {
+              panel.style.display = "block";
+            }
+          });
+        }
+
+
+        
         // Create hover handlers for each span
         createHoverHandler(nameSpan, mateEmoji);
         createHoverHandler(brazilianSpan, brazilEmoji);
@@ -214,3 +237,5 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateEmojiPosition(e);
             }
         });
+
+        
