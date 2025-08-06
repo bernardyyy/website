@@ -6,7 +6,8 @@ const projectSequence = [
   'moombi.html',
   'aprender.html',
   'dump.html',
-  'coura.html'
+  'coura.html',
+  'dreamcareer.html'
 ];
 
 // Function to handle navigation
