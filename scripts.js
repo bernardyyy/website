@@ -7,7 +7,8 @@ const projectSequence = [
   'aprender.html',
   'dump.html',
   'coura.html',
-  'dreamcareer.html'
+  'dreamcareer.html',
+  'irmao.html'
 ];
 
 // Function to handle navigation
